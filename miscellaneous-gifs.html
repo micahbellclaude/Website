@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Miscellaneous GIFs — Micah Bell</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    :root {
+      --orange: #FF6B00;
+      --black: #0a0a0a;
+      --white: #ffffff;
+      --gray: #e8e8e8;
+    }
+
+    body {
+      background: var(--white);
+      color: var(--black);
+      font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+      font-weight: 700;
+    }
+
+    /* NAV */
+    nav {
+      width: 100%;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 2rem 2.5rem;
+    }
+
+    .nav-back {
+      font-size: 0.75rem;
+      font-weight: 700;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      text-decoration: none;
+      color: var(--black);
+      transition: color 0.15s;
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+    }
+
+    .nav-back:hover {
+      color: var(--orange);
+    }
+
+    .nav-right {
+      display: flex;
+      gap: 2rem;
+    }
+
+    .nav-right a {
+      font-size: 0.75rem;
+      font-weight: 700;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      text-decoration: none;
+      color: var(--black);
+      transition: color 0.15s;
+    }
+
+    .nav-right a:hover {
+      color: var(--orange);
+    }
+
+    /* PROJECT HEADER */
+    .project-header {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 4rem 2.5rem 2.5rem;
+      border-bottom: 1.5px solid var(--gray);
+      animation: fadeUp 0.5s ease both;
+    }
+
+    .project-title {
+      font-size: clamp(2.5rem, 7vw, 5.5rem);
+      font-weight: 700;
+      letter-spacing: -0.03em;
+      line-height: 0.95;
+      margin-bottom: 1.5rem;
+    }
+
+    .project-title span {
+      color: var(--orange);
+    }
+
+    .project-meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem 2rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .meta-tag {
+      font-size: 0.7rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      opacity: 0.4;
+    }
+
+    .project-description {
+      font-size: clamp(0.95rem, 1.5vw, 1.1rem);
+      font-weight: 400;
+      line-height: 1.6;
+      max-width: 600px;
+      opacity: 0.7;
+    }
+
+    /* CONTENT AREA */
+    .project-content {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 4rem 2.5rem 8rem;
+      animation: fadeUp 0.5s ease 0.1s both;
+    }
+
+    /* Content blocks — edit these */
+    .content-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+      gap: 1.5rem;
+      margin-bottom: 4rem;
+    }
+
+    .content-image {
+      width: 100%;
+      aspect-ratio: 1;
+      background: var(--gray);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.7rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      opacity: 0.3;
+      /* Replace background with actual image: */
+      /* background: url('../images/blade-runners-01.jpg') center/cover; */
+    }
+
+    .content-image img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    .content-text {
+      margin-bottom: 3rem;
+    }
+
+    .content-text h2 {
+      font-size: 1.4rem;
+      letter-spacing: -0.02em;
+      margin-bottom: 0.75rem;
+    }
+
+    .content-text p {
+      font-size: 0.95rem;
+      font-weight: 400;
+      line-height: 1.7;
+      opacity: 0.65;
+      max-width: 600px;
+    }
+
+    .content-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-size: 0.8rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      text-decoration: none;
+      color: var(--orange);
+      border-bottom: 1.5px solid var(--orange);
+      padding-bottom: 0.1rem;
+      margin-top: 1.5rem;
+      transition: opacity 0.15s;
+    }
+
+    .content-link:hover {
+      opacity: 0.6;
+    }
+
+    /* FOOTER */
+    footer {
+      width: 100%;
+      padding: 1.5rem 2.5rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-top: 1.5px solid var(--gray);
+    }
+
+    footer span {
+      font-size: 0.7rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      opacity: 0.4;
+    }
+
+    footer a {
+      font-size: 0.7rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      text-decoration: none;
+      color: var(--black);
+      opacity: 0.4;
+      transition: opacity 0.15s, color 0.15s;
+    }
+
+    footer a:hover {
+      opacity: 1;
+      color: var(--orange);
+    }
+
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(16px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+  </style>
+</head>
+<body>
+
+  <nav>
+    <a href="../index.html" class="nav-back">← All Work</a>
+    <div class="nav-right">
+      <a href="../info.html">Info</a>
+      <a href="https://instagram.com/micahbellart" target="_blank">Instagram</a>
+    </div>
+  </nav>
+
+  <div class="project-header">
+    <h1 class="project-title">Miscellaneous<br><span>GIFs</span></h1>
+    <div class="project-meta">
+      <span class="meta-tag">Animated GIFs</span>
+      <span class="meta-tag">Originally w/Sound</span>
+    </div>
+    <p class="project-description">
+      Animated GIFs exploring themes of Inquire, Nothingness, Fear, Infliction, Nausea, Introspection, Tame, and Ego.
+    </p>
+    <a href="#" class="content-link">View Work →</a>
+  </div>
+
+  <!-- ============================================================
+       CONTENT SECTION — Add your images, text, embeds below here
+       ============================================================ -->
+  <div class="project-content">
+
+    <div class="content-grid">
+      <!-- Replace these placeholder divs with <img> tags or embed your work -->
+      <div class="content-image">Image</div>
+      <div class="content-image">Image</div>
+      <div class="content-image">Image</div>
+      <div class="content-image">Image</div>
+    </div>
+
+    <!-- Add more text blocks, video embeds, etc. as needed -->
+
+  </div>
+
+  <footer>
+    <span>Micah Bell — San Antonio, TX</span>
+    <a href="mailto:info@micahbellart.com">info@micahbellart.com</a>
+  </footer>
+
+</body>
+</html>
