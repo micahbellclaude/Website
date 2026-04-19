@@ -12,6 +12,12 @@
       --black: #0a0a0a;
       --white: #ffffff;
       --gray: #e8e8e8;
+      --thread-bg: #000000;
+      --thread-surface: #16181c;
+      --thread-border: #2f3336;
+      --thread-text: #e7e9ea;
+      --thread-muted: #71767b;
+      --thread-line: #2f3336;
     }
 
     body {
@@ -22,7 +28,6 @@
       text-align: center;
     }
 
-    /* NAV */
     nav {
       width: 100%;
       display: flex;
@@ -44,7 +49,6 @@
     .nav-back:hover { color: var(--orange); }
 
     .nav-right { display: flex; gap: 2rem; align-items: center; }
-
     .nav-right a {
       font-size: 0.75rem;
       font-weight: 700;
@@ -56,7 +60,6 @@
     }
     .nav-right a:hover { color: var(--orange); }
 
-    /* PROJECT HEADER */
     .project-header {
       max-width: 700px;
       margin: 0 auto;
@@ -64,28 +67,13 @@
       animation: fadeUp 0.5s ease both;
     }
 
-    /* The identity block — text title OR logo image swap in here */
-    .project-identity {
-      margin-bottom: 1.5rem;
-    }
+    .project-identity { margin-bottom: 1.5rem; }
 
-    /* Text title version (default) */
     .project-title {
       font-size: clamp(1.6rem, 4vw, 2.6rem);
       font-weight: 700;
       letter-spacing: -0.02em;
       line-height: 1.05;
-    }
-
-    /* Logo image version — uncomment and swap .project-title for this:
-       <img src="../images/your-project-logo.png" class="project-logo" alt="Project Name" />
-    */
-    .project-logo {
-      max-width: 280px;
-      max-height: 120px;
-      width: auto;
-      height: auto;
-      object-fit: contain;
     }
 
     .project-meta {
@@ -112,23 +100,6 @@
       margin: 0 auto;
     }
 
-    .content-link {
-      display: inline-flex;
-      align-items: center;
-      gap: 0.5rem;
-      font-size: 0.75rem;
-      letter-spacing: 0.15em;
-      text-transform: uppercase;
-      text-decoration: none;
-      color: var(--orange);
-      border-bottom: 1.5px solid var(--orange);
-      padding-bottom: 0.1rem;
-      margin-top: 1.25rem;
-      transition: opacity 0.15s;
-    }
-    .content-link:hover { opacity: 0.6; }
-
-    /* DIVIDER */
     .divider {
       width: 100%;
       max-width: 700px;
@@ -137,56 +108,211 @@
       border-top: 1.5px solid var(--gray);
     }
 
-    /* CONTENT AREA */
-    .project-content {
-      max-width: 700px;
+    /* THREAD */
+    .thread-wrapper {
+      background: var(--thread-bg);
+      padding: 2rem 1rem 5rem;
+    }
+
+    .thread {
+      max-width: 598px;
       margin: 0 auto;
-      padding: 3.5rem 2.5rem 8rem;
-      animation: fadeUp 0.5s ease 0.1s both;
+      text-align: left;
     }
 
-    .content-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-      gap: 1.25rem;
-      margin-bottom: 3rem;
+    .tweet {
+      display: flex;
+      gap: 12px;
+      padding: 12px 16px;
+      position: relative;
+      animation: fadeUp 0.4s ease both;
     }
 
-    .content-image {
-      width: 100%;
-      aspect-ratio: 1;
-      background: var(--gray);
+    .avatar-col {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      flex-shrink: 0;
+      width: 40px;
+    }
+
+    /* Thread connector line between tweets */
+    .tweet:not(:last-child) .avatar-col::after {
+      content: '';
+      display: block;
+      width: 2px;
+      background: var(--thread-line);
+      flex: 1;
+      min-height: 20px;
+      margin-top: 4px;
+    }
+
+    .avatar-initial {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      background: #1a1a1a;
       display: flex;
       align-items: center;
       justify-content: center;
-      font-size: 0.65rem;
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
-      opacity: 0.3;
+      font-size: 1rem;
+      font-weight: 700;
+      color: var(--orange);
+      flex-shrink: 0;
+      font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
     }
 
-    .content-image img {
-      width: 100%; height: 100%; object-fit: cover; display: block;
+    .tweet-body { flex: 1; min-width: 0; }
+
+    .tweet-header {
+      display: flex;
+      align-items: baseline;
+      gap: 5px;
+      margin-bottom: 3px;
+      flex-wrap: wrap;
     }
 
-    .content-text { margin-bottom: 3rem; }
-
-    .content-text h2 {
-      font-size: 1.2rem;
-      letter-spacing: -0.02em;
-      margin-bottom: 0.75rem;
+    .tweet-name {
+      font-size: 0.9375rem;
+      font-weight: 700;
+      color: var(--thread-text);
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
     }
 
-    .content-text p {
-      font-size: 0.9rem;
+    .tweet-handle, .tweet-dot, .tweet-date {
+      font-size: 0.9375rem;
       font-weight: 400;
-      line-height: 1.7;
-      opacity: 0.65;
-      max-width: 520px;
-      margin: 0 auto;
+      color: var(--thread-muted);
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
     }
 
-    /* FOOTER */
+    .tweet-text {
+      font-size: 0.9375rem;
+      font-weight: 400;
+      line-height: 1.55;
+      color: var(--thread-text);
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      white-space: pre-wrap;
+      word-break: break-word;
+    }
+
+    .mention { color: #1d9bf0; text-decoration: none; }
+
+    .tweet-media {
+      margin-top: 12px;
+      border-radius: 16px;
+      overflow: hidden;
+      border: 1px solid var(--thread-border);
+    }
+
+    .tweet-media img {
+      width: 100%;
+      display: block;
+    }
+
+    /* GIF — placeholder until files are uploaded */
+    .gif-slot {
+      margin-top: 12px;
+      border-radius: 16px;
+      overflow: hidden;
+      border: 1px solid var(--thread-border);
+      background: var(--thread-surface);
+      position: relative;
+    }
+
+    .gif-slot img {
+      width: 100%;
+      display: block;
+    }
+
+    /* Shown only when image is missing */
+    .gif-slot .gif-pending {
+      padding: 2rem 1rem;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .gif-badge {
+      background: rgba(0,0,0,0.75);
+      color: #fff;
+      font-size: 0.65rem;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      padding: 2px 7px;
+      border-radius: 4px;
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      position: absolute;
+      bottom: 10px;
+      left: 10px;
+    }
+
+    .gif-pending .gif-badge {
+      position: static;
+    }
+
+    .gif-name {
+      font-size: 0.72rem;
+      color: var(--thread-muted);
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      font-weight: 400;
+    }
+
+    /* Tweet action icons */
+    .tweet-actions {
+      display: flex;
+      gap: 18px;
+      margin-top: 10px;
+    }
+
+    .action {
+      color: var(--thread-muted);
+      display: flex;
+      align-items: center;
+    }
+
+    .action svg {
+      width: 17px;
+      height: 17px;
+    }
+
+    /* Stagger */
+    .tweet:nth-child(1)  { animation-delay: 0.00s; }
+    .tweet:nth-child(2)  { animation-delay: 0.03s; }
+    .tweet:nth-child(3)  { animation-delay: 0.06s; }
+    .tweet:nth-child(4)  { animation-delay: 0.09s; }
+    .tweet:nth-child(5)  { animation-delay: 0.12s; }
+    .tweet:nth-child(6)  { animation-delay: 0.15s; }
+    .tweet:nth-child(7)  { animation-delay: 0.18s; }
+    .tweet:nth-child(8)  { animation-delay: 0.21s; }
+    .tweet:nth-child(9)  { animation-delay: 0.24s; }
+    .tweet:nth-child(10) { animation-delay: 0.27s; }
+    .tweet:nth-child(11) { animation-delay: 0.30s; }
+    .tweet:nth-child(12) { animation-delay: 0.33s; }
+    .tweet:nth-child(13) { animation-delay: 0.36s; }
+    .tweet:nth-child(14) { animation-delay: 0.39s; }
+    .tweet:nth-child(15) { animation-delay: 0.42s; }
+    .tweet:nth-child(16) { animation-delay: 0.45s; }
+    .tweet:nth-child(17) { animation-delay: 0.48s; }
+    .tweet:nth-child(18) { animation-delay: 0.51s; }
+    .tweet:nth-child(19) { animation-delay: 0.54s; }
+    .tweet:nth-child(20) { animation-delay: 0.57s; }
+    .tweet:nth-child(21) { animation-delay: 0.60s; }
+    .tweet:nth-child(22) { animation-delay: 0.63s; }
+    .tweet:nth-child(23) { animation-delay: 0.66s; }
+    .tweet:nth-child(24) { animation-delay: 0.69s; }
+    .tweet:nth-child(25) { animation-delay: 0.72s; }
+    .tweet:nth-child(26) { animation-delay: 0.75s; }
+    .tweet:nth-child(27) { animation-delay: 0.78s; }
+    .tweet:nth-child(28) { animation-delay: 0.81s; }
+    .tweet:nth-child(29) { animation-delay: 0.84s; }
+    .tweet:nth-child(30) { animation-delay: 0.87s; }
+    .tweet:nth-child(31) { animation-delay: 0.90s; }
+    .tweet:nth-child(32) { animation-delay: 0.93s; }
+    .tweet:nth-child(33) { animation-delay: 0.96s; }
+    .tweet:nth-child(34) { animation-delay: 0.99s; }
+
     footer {
       width: 100%;
       padding: 1.5rem 2.5rem;
@@ -195,6 +321,7 @@
       align-items: center;
       border-top: 1.5px solid var(--gray);
       text-align: left;
+      background: var(--white);
     }
 
     footer span {
@@ -216,7 +343,7 @@
     footer a:hover { opacity: 1; color: var(--orange); }
 
     @keyframes fadeUp {
-      from { opacity: 0; transform: translateY(16px); }
+      from { opacity: 0; transform: translateY(12px); }
       to { opacity: 1; transform: translateY(0); }
     }
   </style>
@@ -234,45 +361,587 @@
   </nav>
 
   <div class="project-header">
-
     <div class="project-identity">
-      <!-- OPTION A: Text title (default) -->
-      <h1 class="project-title">Here Come The Blade Runners_HTML</h1>
-
-      <!-- OPTION B: Logo image — delete the h1 above and uncomment this:
-      <img src="../images/your-logo.png" class="project-logo" alt="Here Come The Blade Runners" />
-      -->
+      <h1 class="project-title">Here Come The Blade Runners</h1>
     </div>
-
     <div class="project-meta">
       <span class="meta-tag">Illustration</span>
       <span class="meta-tag">Design</span>
       <span class="meta-tag">Animated GIFs</span>
       <span class="meta-tag">Twitter Essay</span>
     </div>
-
-    <p class="project-description">
-      A Twitter essay on censorship, Blade Runner, and the great attention auction of social media.
-    </p>
-
-    <a href="#" class="content-link">View Essay →</a>
-
+    <p class="project-description">A multimedia Twitter essay on censorship, Blade Runner, and The Great Attention Auction (Social Media). Originally published as a thread on Feb 26, 2021.</p>
   </div>
 
   <hr class="divider" />
 
-  <!-- ============================================================
-       CONTENT SECTION — Add your images, text, embeds below here
-       ============================================================ -->
-  <div class="project-content">
+  <div class="thread-wrapper">
+    <div class="thread">
 
-    <div class="content-grid">
-      <div class="content-image">Image</div>
-      <div class="content-image">Image</div>
-      <div class="content-image">Image</div>
-      <div class="content-image">Image</div>
+      <!-- 1 -->
+      <div class="tweet">
+        <div class="avatar-col"><div class="avatar-initial">M</div></div>
+        <div class="tweet-body">
+          <div class="tweet-header">
+            <span class="tweet-name">Micah Bell</span>
+            <span class="tweet-handle">@micahbell</span>
+            <span class="tweet-dot">·</span>
+            <span class="tweet-date">Feb 26, 2021</span>
+          </div>
+          <div class="tweet-text">With the president banned from Twitter, FB, and others, the current solution is like a played out directive. Here Come The Blade Runners: A multimedia Twitter essay on censorship, Blade Runner, and The Great Attention Auction (Social Media)</div>
+          <div class="tweet-media"><img src="../images/MainImage.jpg" alt="Here Come The Blade Runners" /></div>
+          <div class="tweet-actions">
+            <span class="action"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg></span>
+            <span class="action"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><polyline points="17 1 21 5 17 9"/><path d="M3 11V9a4 4 0 0 1 4-4h14"/><polyline points="7 23 3 19 7 15"/><path d="M21 13v2a4 4 0 0 1-4 4H3"/></svg></span>
+            <span class="action"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg></span>
+            <span class="action"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg></span>
+          </div>
+        </div>
+      </div>
+
+      <!-- 2 -->
+      <div class="tweet">
+        <div class="avatar-col"><div class="avatar-initial">M</div></div>
+        <div class="tweet-body">
+          <div class="tweet-header"><span class="tweet-name">Micah Bell</span><span class="tweet-handle">@micahbell</span></div>
+          <div class="tweet-text">Essay, images, and design by me. Images and illustrations that are not 100% original have been brought to life from the public domain.</div>
+          <div class="tweet-actions">
+            <span class="action"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg></span>
+            <span class="action"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><polyline points="17 1 21 5 17 9"/><path d="M3 11V9a4 4 0 0 1 4-4h14"/><polyline points="7 23 3 19 7 15"/><path d="M21 13v2a4 4 0 0 1-4 4H3"/></svg></span>
+            <span class="action"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg></span>
+            <span class="action"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg></span>
+          </div>
+        </div>
+      </div>
+
+      <!-- 3 -->
+      <div class="tweet">
+        <div class="avatar-col"><div class="avatar-initial">M</div></div>
+        <div class="tweet-body">
+          <div class="tweet-header"><span class="tweet-name">Micah Bell</span><span class="tweet-handle">@micahbell</span></div>
+          <div class="tweet-text">"It seems you feel our work is not a benefit to the public?" Gold and white ripple off the walls. An owl turns its head a full 360, eyes orange. "Replicants are like any other machine, they're either a benefit or a hazard. If they're a benefit it's not my problem."</div>
+          <div class="tweet-actions">
+            <span class="action"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg></span>
+            <span class="action"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><polyline points="17 1 21 5 17 9"/><path d="M3 11V9a4 4 0 0 1 4-4h14"/><polyline points="7 23 3 19 7 15"/><path d="M21 13v2a4 4 0 0 1-4 4H3"/></svg></span>
+            <span class="action"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg></span>
+            <span class="action"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg></span>
+          </div>
+        </div>
+      </div>
+
+      <!-- 4 — owl gif -->
+      <div class="tweet">
+        <div class="avatar-col"><div class="avatar-initial">M</div></div>
+        <div class="tweet-body">
+          <div class="tweet-header"><span class="tweet-name">Micah Bell</span><span class="tweet-handle">@micahbell</span></div>
+          <div class="tweet-text">Deckard, a Blade Runner, rattles this off like it's something we are meant to accept. Benefit or hazard.</div>
+          <div class="gif-slot">
+            <!-- swap for: <img src="../images/gifs/owl.gif" alt="owl" /> -->
+            <img src="../images/gifs/OwlStand-smaller.gif" alt="Owl" />
+          </div>
+          <div class="tweet-actions">
+            <span class="action"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg></span>
+            <span class="action"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><polyline points="17 1 21 5 17 9"/><path d="M3 11V9a4 4 0 0 1 4-4h14"/><polyline points="7 23 3 19 7 15"/><path d="M21 13v2a4 4 0 0 1-4 4H3"/></svg></span>
+            <span class="action"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg></span>
+            <span class="action"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg></span>
+          </div>
+        </div>
+      </div>
+
+      <!-- 5 -->
+      <div class="tweet">
+        <div class="avatar-col"><div class="avatar-initial">M</div></div>
+        <div class="tweet-body">
+          <div class="tweet-header"><span class="tweet-name">Micah Bell</span><span class="tweet-handle">@micahbell</span></div>
+          <div class="tweet-text">In the world of Blade Runner, there are replicants (androids) that have been created by Dr. Eldon Tyrell to serve humans. The problem is that the newest Nexus-6 replicants are made too well, and the line between human and machine is diminishing.</div>
+          <div class="tweet-actions">
+            <span class="action"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg></span>
+            <span class="action"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><polyline points="17 1 21 5 17 9"/><path d="M3 11V9a4 4 0 0 1 4-4h14"/><polyline points="7 23 3 19 7 15"/><path d="M21 13v2a4 4 0 0 1-4 4H3"/></svg></span>
+            <span class="action"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg></span>
+            <span class="action"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg></span>
+          </div>
+        </div>
+      </div>
+
+      <!-- 6 -->
+      <div class="tweet">
+        <div class="avatar-col"><div class="avatar-initial">M</div></div>
+        <div class="tweet-body">
+          <div class="tweet-header"><span class="tweet-name">Micah Bell</span><span class="tweet-handle">@micahbell</span></div>
+          <div class="tweet-text">*Insert Blade Runners here* - the hitmen sent to "retire" unlucky replicants that deviate from their programming (in other words they grow a soul.)</div>
+          <div class="tweet-actions">
+            <span class="action"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg></span>
+            <span class="action"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><polyline points="17 1 21 5 17 9"/><path d="M3 11V9a4 4 0 0 1 4-4h14"/><polyline points="7 23 3 19 7 15"/><path d="M21 13v2a4 4 0 0 1-4 4H3"/></svg></span>
+            <span class="action"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg></span>
+            <span class="action"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg></span>
+          </div>
+        </div>
+      </div>
+
+      <!-- 7 -->
+      <div class="tweet">
+        <div class="avatar-col"><div class="avatar-initial">M</div></div>
+        <div class="tweet-body">
+          <div class="tweet-header"><span class="tweet-name">Micah Bell</span><span class="tweet-handle">@micahbell</span></div>
+          <div class="tweet-text">The people of Earth in Ridley Scott's film adaptation appear to be suffering under the same creed that we do - technology is god. Tyrell has achieved mythic status, not by asking "why not?" but by refusing to ask "why?"</div>
+          <div class="tweet-actions">
+            <span class="action"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg></span>
+            <span class="action"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><polyline points="17 1 21 5 17 9"/><path d="M3 11V9a4 4 0 0 1 4-4h14"/><polyline points="7 23 3 19 7 15"/><path d="M21 13v2a4 4 0 0 1-4 4H3"/></svg></span>
+            <span class="action"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg></span>
+            <span class="action"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg></span>
+          </div>
+        </div>
+      </div>
+
+      <!-- 8 -->
+      <div class="tweet">
+        <div class="avatar-col"><div class="avatar-initial">M</div></div>
+        <div class="tweet-body">
+          <div class="tweet-header"><span class="tweet-name">Micah Bell</span><span class="tweet-handle">@micahbell</span></div>
+          <div class="tweet-text">Sounds familiar. I have no doubt Dr. Tyrell spent his fair share on the cover of TIME or Forbes as he developed the Nexus-6 line of robots.</div>
+          <div class="tweet-actions">
+            <span class="action"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg></span>
+            <span class="action"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><polyline points="17 1 21 5 17 9"/><path d="M3 11V9a4 4 0 0 1 4-4h14"/><polyline points="7 23 3 19 7 15"/><path d="M21 13v2a4 4 0 0 1-4 4H3"/></svg></span>
+            <span class="action"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg></span>
+            <span class="action"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg></span>
+          </div>
+        </div>
+      </div>
+
+      <!-- 9 — skull gif -->
+      <div class="tweet">
+        <div class="avatar-col"><div class="avatar-initial">M</div></div>
+        <div class="tweet-body">
+          <div class="tweet-header"><span class="tweet-name">Micah Bell</span><span class="tweet-handle">@micahbell</span></div>
+          <div class="tweet-text">We know this story well. Brilliant mind with relentless pursuit of "progress" via technological development creates breakthrough tech causing unforeseen problems with said tech.</div>
+          <div class="gif-slot">
+            <img src="../images/gifs/Skull_Crown_Medium-min.gif" alt="Skull Crown" />
+          </div>
+          <div class="tweet-actions">
+            <span class="action"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg></span>
+            <span class="action"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><polyline points="17 1 21 5 17 9"/><path d="M3 11V9a4 4 0 0 1 4-4h14"/><polyline points="7 23 3 19 7 15"/><path d="M21 13v2a4 4 0 0 1-4 4H3"/></svg></span>
+            <span class="action"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg></span>
+            <span class="action"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg></span>
+          </div>
+        </div>
+      </div>
+
+      <!-- 10 -->
+      <div class="tweet">
+        <div class="avatar-col"><div class="avatar-initial">M</div></div>
+        <div class="tweet-body">
+          <div class="tweet-header"><span class="tweet-name">Micah Bell</span><span class="tweet-handle">@micahbell</span></div>
+          <div class="tweet-text">Technology giveth and technology taketh away - according to Neil Postman.</div>
+          <div class="tweet-actions">
+            <span class="action"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg></span>
+            <span class="action"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><polyline points="17 1 21 5 17 9"/><path d="M3 11V9a4 4 0 0 1 4-4h14"/><polyline points="7 23 3 19 7 15"/><path d="M21 13v2a4 4 0 0 1-4 4H3"/></svg></span>
+            <span class="action"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg></span>
+            <span class="action"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg></span>
+          </div>
+        </div>
+      </div>
+
+      <!-- 11 -->
+      <div class="tweet">
+        <div class="avatar-col"><div class="avatar-initial">M</div></div>
+        <div class="tweet-body">
+          <div class="tweet-header"><span class="tweet-name">Micah Bell</span><span class="tweet-handle">@micahbell</span></div>
+          <div class="tweet-text">Problematic replicants fell into Deckard's "hazard" bucket - a bucket with only one option - retirement. Of course the solution is, as usual, violence.</div>
+          <div class="tweet-actions">
+            <span class="action"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg></span>
+            <span class="action"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><polyline points="17 1 21 5 17 9"/><path d="M3 11V9a4 4 0 0 1 4-4h14"/><polyline points="7 23 3 19 7 15"/><path d="M21 13v2a4 4 0 0 1-4 4H3"/></svg></span>
+            <span class="action"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg></span>
+            <span class="action"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg></span>
+          </div>
+        </div>
+      </div>
+
+      <!-- 12 -->
+      <div class="tweet">
+        <div class="avatar-col"><div class="avatar-initial">M</div></div>
+        <div class="tweet-body">
+          <div class="tweet-header"><span class="tweet-name">Micah Bell</span><span class="tweet-handle">@micahbell</span></div>
+          <div class="tweet-text">Violence is something we can turn to when the genie we let out of the bottle starts to think for itself.</div>
+          <div class="tweet-actions">
+            <span class="action"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg></span>
+            <span class="action"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><polyline points="17 1 21 5 17 9"/><path d="M3 11V9a4 4 0 0 1 4-4h14"/><polyline points="7 23 3 19 7 15"/><path d="M21 13v2a4 4 0 0 1-4 4H3"/></svg></span>
+            <span class="action"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg></span>
+            <span class="action"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg></span>
+          </div>
+        </div>
+      </div>
+
+      <!-- 13 — angels gif -->
+      <div class="tweet">
+        <div class="avatar-col"><div class="avatar-initial">M</div></div>
+        <div class="tweet-body">
+          <div class="tweet-header"><span class="tweet-name">Micah Bell</span><span class="tweet-handle">@micahbell</span></div>
+          <div class="tweet-text">We commonly refer to these technological hazards as "unintended consequences" as if they are some form of inevitability that we have to live with in the name of "Progress."</div>
+          <div class="gif-slot">
+            <img src="../images/gifs/Angels_Small.gif" alt="Angels" />
+          </div>
+          <div class="tweet-actions">
+            <span class="action"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg></span>
+            <span class="action"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><polyline points="17 1 21 5 17 9"/><path d="M3 11V9a4 4 0 0 1 4-4h14"/><polyline points="7 23 3 19 7 15"/><path d="M21 13v2a4 4 0 0 1-4 4H3"/></svg></span>
+            <span class="action"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg></span>
+            <span class="action"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg></span>
+          </div>
+        </div>
+      </div>
+
+      <!-- 14 -->
+      <div class="tweet">
+        <div class="avatar-col"><div class="avatar-initial">M</div></div>
+        <div class="tweet-body">
+          <div class="tweet-header"><span class="tweet-name">Micah Bell</span><span class="tweet-handle">@micahbell</span></div>
+          <div class="tweet-text">Like you, I've been preoccupied lately with thoughts on censorship and its use on social media platforms. &amp; today I heard Deckard's voice like some sort of Executive decision, "Benefit or hazard." Or as the team at Twitter say, "!This claim about election fraud is disputed."</div>
+          <div class="tweet-actions">
+            <span class="action"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg></span>
+            <span class="action"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><polyline points="17 1 21 5 17 9"/><path d="M3 11V9a4 4 0 0 1 4-4h14"/><polyline points="7 23 3 19 7 15"/><path d="M21 13v2a4 4 0 0 1-4 4H3"/></svg></span>
+            <span class="action"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg></span>
+            <span class="action"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg></span>
+          </div>
+        </div>
+      </div>
+
+      <!-- 15 -->
+      <div class="tweet">
+        <div class="avatar-col"><div class="avatar-initial">M</div></div>
+        <div class="tweet-body">
+          <div class="tweet-header"><span class="tweet-name">Micah Bell</span><span class="tweet-handle">@micahbell</span></div>
+          <div class="tweet-text">This feeble disclaimer made me think Twitter was just trying to buy time. "What new technology can be rolled out to properly monitor hate speech that incites insurrection?"</div>
+          <div class="tweet-actions">
+            <span class="action"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg></span>
+            <span class="action"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><polyline points="17 1 21 5 17 9"/><path d="M3 11V9a4 4 0 0 1 4-4h14"/><polyline points="7 23 3 19 7 15"/><path d="M21 13v2a4 4 0 0 1-4 4H3"/></svg></span>
+            <span class="action"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg></span>
+            <span class="action"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg></span>
+          </div>
+        </div>
+      </div>
+
+      <!-- 16 — technology gif -->
+      <div class="tweet">
+        <div class="avatar-col"><div class="avatar-initial">M</div></div>
+        <div class="tweet-body">
+          <div class="tweet-header"><span class="tweet-name">Micah Bell</span><span class="tweet-handle">@micahbell</span></div>
+          <div class="tweet-text">Our sacred solution - more tech to eliminate broken tech.</div>
+          <div class="gif-slot">
+            <img src="../images/gifs/Technology2b-min.gif" alt="Technology" />
+          </div>
+          <div class="tweet-actions">
+            <span class="action"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg></span>
+            <span class="action"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><polyline points="17 1 21 5 17 9"/><path d="M3 11V9a4 4 0 0 1 4-4h14"/><polyline points="7 23 3 19 7 15"/><path d="M21 13v2a4 4 0 0 1-4 4H3"/></svg></span>
+            <span class="action"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg></span>
+            <span class="action"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg></span>
+          </div>
+        </div>
+      </div>
+
+      <!-- 17 -->
+      <div class="tweet">
+        <div class="avatar-col"><div class="avatar-initial">M</div></div>
+        <div class="tweet-body">
+          <div class="tweet-header"><span class="tweet-name">Micah Bell</span><span class="tweet-handle">@micahbell</span></div>
+          <div class="tweet-text">I've been thumb-sifting through the dialogue since the censorship tactics were rolled out on our president and others like him who speak falsehoods about such things as national elections or pandemics.</div>
+          <div class="tweet-actions">
+            <span class="action"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg></span>
+            <span class="action"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><polyline points="17 1 21 5 17 9"/><path d="M3 11V9a4 4 0 0 1 4-4h14"/><polyline points="7 23 3 19 7 15"/><path d="M21 13v2a4 4 0 0 1-4 4H3"/></svg></span>
+            <span class="action"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg></span>
+            <span class="action"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg></span>
+          </div>
+        </div>
+      </div>
+
+      <!-- 18 -->
+      <div class="tweet">
+        <div class="avatar-col"><div class="avatar-initial">M</div></div>
+        <div class="tweet-body">
+          <div class="tweet-header"><span class="tweet-name">Micah Bell</span><span class="tweet-handle">@micahbell</span></div>
+          <div class="tweet-text">While I certainly agree with the removal, I am more concerned about what took so long, and why now? Was it the storming of the capital that caused <a class="mention" href="#">@Jack</a> to say "enough"?</div>
+          <div class="tweet-actions">
+            <span class="action"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg></span>
+            <span class="action"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><polyline points="17 1 21 5 17 9"/><path d="M3 11V9a4 4 0 0 1 4-4h14"/><polyline points="7 23 3 19 7 15"/><path d="M21 13v2a4 4 0 0 1-4 4H3"/></svg></span>
+            <span class="action"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg></span>
+            <span class="action"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg></span>
+          </div>
+        </div>
+      </div>
+
+      <!-- 19 -->
+      <div class="tweet">
+        <div class="avatar-col"><div class="avatar-initial">M</div></div>
+        <div class="tweet-body">
+          <div class="tweet-header"><span class="tweet-name">Micah Bell</span><span class="tweet-handle">@micahbell</span></div>
+          <div class="tweet-text">Actor Wil Wheaton recently mentioned on the <a class="mention" href="#">@Kingcast</a> podcast that he left Twitter because there were "too many fascists" on the platform. This ain't new.</div>
+          <div class="tweet-actions">
+            <span class="action"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg></span>
+            <span class="action"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><polyline points="17 1 21 5 17 9"/><path d="M3 11V9a4 4 0 0 1 4-4h14"/><polyline points="7 23 3 19 7 15"/><path d="M21 13v2a4 4 0 0 1-4 4H3"/></svg></span>
+            <span class="action"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg></span>
+            <span class="action"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg></span>
+          </div>
+        </div>
+      </div>
+
+      <!-- 20 -->
+      <div class="tweet">
+        <div class="avatar-col"><div class="avatar-initial">M</div></div>
+        <div class="tweet-body">
+          <div class="tweet-header"><span class="tweet-name">Micah Bell</span><span class="tweet-handle">@micahbell</span></div>
+          <div class="tweet-text">Maybe it was the righteous letter signed by over 300 Twitter employees that were willing to put their livelihood on the line to see some form of accountability carried out.</div>
+          <div class="tweet-actions">
+            <span class="action"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg></span>
+            <span class="action"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><polyline points="17 1 21 5 17 9"/><path d="M3 11V9a4 4 0 0 1 4-4h14"/><polyline points="7 23 3 19 7 15"/><path d="M21 13v2a4 4 0 0 1-4 4H3"/></svg></span>
+            <span class="action"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg></span>
+            <span class="action"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg></span>
+          </div>
+        </div>
+      </div>
+
+      <!-- 21 — benefithazard gif -->
+      <div class="tweet">
+        <div class="avatar-col"><div class="avatar-initial">M</div></div>
+        <div class="tweet-body">
+          <div class="tweet-header"><span class="tweet-name">Micah Bell</span><span class="tweet-handle">@micahbell</span></div>
+          <div class="tweet-text">It feels a lot like the exec-folks at Twitter are debating whether or not Blade Runners should be retiring replicants. Is disinformation a benefit or hazard? Should it be retired? To me, it all seems too little too late. That shouldn't be the question we're asking.</div>
+          <div class="gif-slot">
+            <img src="../images/gifs/Benefit_Or_Hazard.gif" alt="Benefit or Hazard" />
+          </div>
+          <div class="tweet-actions">
+            <span class="action"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg></span>
+            <span class="action"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><polyline points="17 1 21 5 17 9"/><path d="M3 11V9a4 4 0 0 1 4-4h14"/><polyline points="7 23 3 19 7 15"/><path d="M21 13v2a4 4 0 0 1-4 4H3"/></svg></span>
+            <span class="action"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg></span>
+            <span class="action"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg></span>
+          </div>
+        </div>
+      </div>
+
+      <!-- 22 -->
+      <div class="tweet">
+        <div class="avatar-col"><div class="avatar-initial">M</div></div>
+        <div class="tweet-body">
+          <div class="tweet-header"><span class="tweet-name">Micah Bell</span><span class="tweet-handle">@micahbell</span></div>
+          <div class="tweet-text">We've left ourselves with only silence or unchecked disinformation. Who's guarding the cork to the genie's bottle?</div>
+          <div class="tweet-actions">
+            <span class="action"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg></span>
+            <span class="action"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><polyline points="17 1 21 5 17 9"/><path d="M3 11V9a4 4 0 0 1 4-4h14"/><polyline points="7 23 3 19 7 15"/><path d="M21 13v2a4 4 0 0 1-4 4H3"/></svg></span>
+            <span class="action"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg></span>
+            <span class="action"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg></span>
+          </div>
+        </div>
+      </div>
+
+      <!-- 23 — clicks gif -->
+      <div class="tweet">
+        <div class="avatar-col"><div class="avatar-initial">M</div></div>
+        <div class="tweet-body">
+          <div class="tweet-header"><span class="tweet-name">Micah Bell</span><span class="tweet-handle">@micahbell</span></div>
+          <div class="tweet-text">How could disinformation be a benefit? To Twitter, it has been for a long while. Racism, hate, lies, conspiracy = clicks, clicks, clicks, clicks.</div>
+          <div class="gif-slot">
+            <img src="../images/gifs/Clicks_Small.gif" alt="Clicks" />
+          </div>
+          <div class="tweet-actions">
+            <span class="action"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg></span>
+            <span class="action"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><polyline points="17 1 21 5 17 9"/><path d="M3 11V9a4 4 0 0 1 4-4h14"/><polyline points="7 23 3 19 7 15"/><path d="M21 13v2a4 4 0 0 1-4 4H3"/></svg></span>
+            <span class="action"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg></span>
+            <span class="action"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg></span>
+          </div>
+        </div>
+      </div>
+
+      <!-- 24 -->
+      <div class="tweet">
+        <div class="avatar-col"><div class="avatar-initial">M</div></div>
+        <div class="tweet-body">
+          <div class="tweet-header"><span class="tweet-name">Micah Bell</span><span class="tweet-handle">@micahbell</span></div>
+          <div class="tweet-text">This is why the move to ban accounts seems performative, no matter how thankful I am that the former president's hateful rhetoric has been silenced.</div>
+          <div class="tweet-actions">
+            <span class="action"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg></span>
+            <span class="action"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><polyline points="17 1 21 5 17 9"/><path d="M3 11V9a4 4 0 0 1 4-4h14"/><polyline points="7 23 3 19 7 15"/><path d="M21 13v2a4 4 0 0 1-4 4H3"/></svg></span>
+            <span class="action"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg></span>
+            <span class="action"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg></span>
+          </div>
+        </div>
+      </div>
+
+      <!-- 25 — scales2 gif -->
+      <div class="tweet">
+        <div class="avatar-col"><div class="avatar-initial">M</div></div>
+        <div class="tweet-body">
+          <div class="tweet-header"><span class="tweet-name">Micah Bell</span><span class="tweet-handle">@micahbell</span></div>
+          <div class="tweet-text">When will the alignment of Twitter's bottom-line-calculus be recalibrated?
+
+I don't see Social Media, in general, as the problem. Author <a class="mention" href="#">@DavidDark</a> likes to compare Social Media to paper, which I tend to agree with, as it's just another medium. It's just us - louder.
+
+But what happens when the paper you're writing on only accepts ink when you write lies, fear, disinformation, etc.? The scale is tipped toward algorithmic hate.</div>
+          <div class="gif-slot">
+            <img src="../images/gifs/Scales2_Small.gif" alt="Scales" />
+          </div>
+          <div class="tweet-actions">
+            <span class="action"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg></span>
+            <span class="action"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><polyline points="17 1 21 5 17 9"/><path d="M3 11V9a4 4 0 0 1 4-4h14"/><polyline points="7 23 3 19 7 15"/><path d="M21 13v2a4 4 0 0 1-4 4H3"/></svg></span>
+            <span class="action"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg></span>
+            <span class="action"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg></span>
+          </div>
+        </div>
+      </div>
+
+      <!-- 26 — facesquare gif -->
+      <div class="tweet">
+        <div class="avatar-col"><div class="avatar-initial">M</div></div>
+        <div class="tweet-body">
+          <div class="tweet-header"><span class="tweet-name">Micah Bell</span><span class="tweet-handle">@micahbell</span></div>
+          <div class="tweet-text">I can hear Rod Serling's (Twilight Zone) voice in my head introducing me to a man who is offered the ability to write only best selling novels, but that each one will misinform an entire generation on the subject of interest.</div>
+          <div class="gif-slot">
+            <img src="../images/gifs/FaceSquare-Small.gif" alt="Face" />
+          </div>
+          <div class="tweet-actions">
+            <span class="action"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg></span>
+            <span class="action"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><polyline points="17 1 21 5 17 9"/><path d="M3 11V9a4 4 0 0 1 4-4h14"/><polyline points="7 23 3 19 7 15"/><path d="M21 13v2a4 4 0 0 1-4 4H3"/></svg></span>
+            <span class="action"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg></span>
+            <span class="action"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg></span>
+          </div>
+        </div>
+      </div>
+
+      <!-- 27 -->
+      <div class="tweet">
+        <div class="avatar-col"><div class="avatar-initial">M</div></div>
+        <div class="tweet-body">
+          <div class="tweet-header"><span class="tweet-name">Micah Bell</span><span class="tweet-handle">@micahbell</span></div>
+          <div class="tweet-text">Attempts to censor the written word are generally frowned upon in the U.S. as a means of upholding the credibility of the "marketplace of ideas" as being the true arbiter of all things knowaboutable.
+
+In "Technopoly", Neil Postman thinks the Founding Fathers believed this marketplace of information would allow citizens to "make sense of what they read and heard and, through reason, judge its usefulness."</div>
+          <div class="tweet-actions">
+            <span class="action"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg></span>
+            <span class="action"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><polyline points="17 1 21 5 17 9"/><path d="M3 11V9a4 4 0 0 1 4-4h14"/><polyline points="7 23 3 19 7 15"/><path d="M21 13v2a4 4 0 0 1-4 4H3"/></svg></span>
+            <span class="action"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg></span>
+            <span class="action"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg></span>
+          </div>
+        </div>
+      </div>
+
+      <!-- 28 — marketplace gif -->
+      <div class="tweet">
+        <div class="avatar-col"><div class="avatar-initial">M</div></div>
+        <div class="tweet-body">
+          <div class="tweet-header"><span class="tweet-name">Micah Bell</span><span class="tweet-handle">@micahbell</span></div>
+          <div class="tweet-text">But they didn't predict this marketplace would be broken down into information chaos. A generous view of history would say they saw access to information as a means to helping humanity gain knowledge, not a tool to hold our attention for monetary gain.
+
+A common theme I hear from peers today is that they just can't seem to tell what's real (true) anymore. Everyone holds their own version of reality in their hands.</div>
+          <div class="gif-slot">
+            <img src="../images/gifs/Marketplace.gif" alt="Marketplace of Ideas" />
+          </div>
+          <div class="tweet-actions">
+            <span class="action"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg></span>
+            <span class="action"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><polyline points="17 1 21 5 17 9"/><path d="M3 11V9a4 4 0 0 1 4-4h14"/><polyline points="7 23 3 19 7 15"/><path d="M21 13v2a4 4 0 0 1-4 4H3"/></svg></span>
+            <span class="action"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg></span>
+            <span class="action"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg></span>
+          </div>
+        </div>
+      </div>
+
+      <!-- 29 — ancient gif -->
+      <div class="tweet">
+        <div class="avatar-col"><div class="avatar-initial">M</div></div>
+        <div class="tweet-body">
+          <div class="tweet-header"><span class="tweet-name">Micah Bell</span><span class="tweet-handle">@micahbell</span></div>
+          <div class="tweet-text">Lie after lie after lie was broadcast as signal, when in reality it was just noise. The Great Attention Auction went to work and capital "T" Truth was split in half like two sides of a mirror.
+
+Aided by algorithms that are indifferent to such costly human intangibles like "community" or "empathy", the marketplace of ideas has unraveled for the sake of what Postman refers to as the "saleability of irrelevant information."</div>
+          <div class="gif-slot">
+            <img src="../images/gifs/Ancient.GIF" alt="Ancient" />
+          </div>
+          <div class="tweet-actions">
+            <span class="action"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg></span>
+            <span class="action"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><polyline points="17 1 21 5 17 9"/><path d="M3 11V9a4 4 0 0 1 4-4h14"/><polyline points="7 23 3 19 7 15"/><path d="M21 13v2a4 4 0 0 1-4 4H3"/></svg></span>
+            <span class="action"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg></span>
+            <span class="action"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg></span>
+          </div>
+        </div>
+      </div>
+
+      <!-- 30 -->
+      <div class="tweet">
+        <div class="avatar-col"><div class="avatar-initial">M</div></div>
+        <div class="tweet-body">
+          <div class="tweet-header"><span class="tweet-name">Micah Bell</span><span class="tweet-handle">@micahbell</span></div>
+          <div class="tweet-text">With more tech comes more access to information. With more access to information, we need controls to organize the information (Social Media -> algorithms). I suppose if there is hope for putting the genie back in the bottle, this is where it'll happen.</div>
+          <div class="tweet-actions">
+            <span class="action"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg></span>
+            <span class="action"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><polyline points="17 1 21 5 17 9"/><path d="M3 11V9a4 4 0 0 1 4-4h14"/><polyline points="7 23 3 19 7 15"/><path d="M21 13v2a4 4 0 0 1-4 4H3"/></svg></span>
+            <span class="action"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg></span>
+            <span class="action"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg></span>
+          </div>
+        </div>
+      </div>
+
+      <!-- 31 — blake gif -->
+      <div class="tweet">
+        <div class="avatar-col"><div class="avatar-initial">M</div></div>
+        <div class="tweet-body">
+          <div class="tweet-header"><span class="tweet-name">Micah Bell</span><span class="tweet-handle">@micahbell</span></div>
+          <div class="tweet-text">The move to ban speech that is out of line with policy and guidelines is a chewing-gum-on-a-dam-wall fix. It conveniently ignores the real problem while allowing the auction to continue.</div>
+          <div class="gif-slot">
+            <img src="../images/gifs/Blake_Small.gif" alt="Blake" />
+          </div>
+          <div class="tweet-actions">
+            <span class="action"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg></span>
+            <span class="action"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><polyline points="17 1 21 5 17 9"/><path d="M3 11V9a4 4 0 0 1 4-4h14"/><polyline points="7 23 3 19 7 15"/><path d="M21 13v2a4 4 0 0 1-4 4H3"/></svg></span>
+            <span class="action"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg></span>
+            <span class="action"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg></span>
+          </div>
+        </div>
+      </div>
+
+      <!-- 32 -->
+      <div class="tweet">
+        <div class="avatar-col"><div class="avatar-initial">M</div></div>
+        <div class="tweet-body">
+          <div class="tweet-header"><span class="tweet-name">Micah Bell</span><span class="tweet-handle">@micahbell</span></div>
+          <div class="tweet-text">The cracks have been forming for years and years. Many have warned of this exact situation for some time. Meanwhile, a fresh canary is put in the coal mine cage.</div>
+          <div class="tweet-actions">
+            <span class="action"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg></span>
+            <span class="action"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><polyline points="17 1 21 5 17 9"/><path d="M3 11V9a4 4 0 0 1 4-4h14"/><polyline points="7 23 3 19 7 15"/><path d="M21 13v2a4 4 0 0 1-4 4H3"/></svg></span>
+            <span class="action"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg></span>
+            <span class="action"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg></span>
+          </div>
+        </div>
+      </div>
+
+      <!-- 33 -->
+      <div class="tweet">
+        <div class="avatar-col"><div class="avatar-initial">M</div></div>
+        <div class="tweet-body">
+          <div class="tweet-header"><span class="tweet-name">Micah Bell</span><span class="tweet-handle">@micahbell</span></div>
+          <div class="tweet-text">We press on. 'Cuz that's what Technopolies do. Until the next riot, act of terror, or hate crime that is so appalling that Big capital "T" Tech swoops in to pretend they care.</div>
+          <div class="tweet-actions">
+            <span class="action"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg></span>
+            <span class="action"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><polyline points="17 1 21 5 17 9"/><path d="M3 11V9a4 4 0 0 1 4-4h14"/><polyline points="7 23 3 19 7 15"/><path d="M21 13v2a4 4 0 0 1-4 4H3"/></svg></span>
+            <span class="action"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg></span>
+            <span class="action"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg></span>
+          </div>
+        </div>
+      </div>
+
+      <!-- 34 — PKD gif, final post -->
+      <div class="tweet">
+        <div class="avatar-col"><div class="avatar-initial">M</div></div>
+        <div class="tweet-body">
+          <div class="tweet-header"><span class="tweet-name">Micah Bell</span><span class="tweet-handle">@micahbell</span></div>
+          <div class="tweet-text">*The gavel bangs* Our thumbs itch and we keep scrolling.</div>
+          <div class="gif-slot">
+            <img src="../images/gifs/PKD.jpg" alt="Philip K. Dick" />
+          </div>
+          <div class="tweet-actions">
+            <span class="action"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg></span>
+            <span class="action"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><polyline points="17 1 21 5 17 9"/><path d="M3 11V9a4 4 0 0 1 4-4h14"/><polyline points="7 23 3 19 7 15"/><path d="M21 13v2a4 4 0 0 1-4 4H3"/></svg></span>
+            <span class="action"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg></span>
+            <span class="action"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg></span>
+          </div>
+        </div>
+      </div>
+
     </div>
-
   </div>
 
   <footer>
