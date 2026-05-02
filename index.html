@@ -71,7 +71,7 @@
       width: clamp(120px, 20vw, 220px);
       height: auto;
       display: block;
-      margin-bottom: 0.25rem;
+      margin-bottom: 1.5rem;
     }
 
     .tagline {
@@ -158,37 +158,20 @@
       }
     }
 
-    /* FOOTER */
     footer {
       margin-top: auto;
       width: 100%;
-      padding: 1.5rem 2.5rem;
+      padding: 1rem 2.5rem;
       display: flex;
-      justify-content: space-between;
+      justify-content: center;
       align-items: center;
       border-top: 1.5px solid var(--gray);
     }
 
-    footer span {
-      font-size: 0.7rem;
-      letter-spacing: 0.15em;
-      text-transform: uppercase;
-      opacity: 0.4;
-    }
-
-    footer a {
-      font-size: 0.7rem;
-      letter-spacing: 0.15em;
-      text-transform: uppercase;
-      text-decoration: none;
-      color: var(--black);
-      opacity: 0.4;
-      transition: opacity 0.15s, color 0.15s;
-    }
-
-    footer a:hover {
-      opacity: 1;
-      color: var(--orange);
+    footer img {
+      height: 28px;
+      width: auto;
+      opacity: 0.5;
     }
   </style>
 </head>
@@ -207,6 +190,20 @@
   </div>
 
   <div class="projects">
+
+    <a href="projects/wwdd.html" class="project-link">
+      <div class="project-inner">
+        <span class="project-title">WWDD</span>
+        <span class="arrow">→</span>
+      </div>
+    </a>
+
+    <a href="projects/timely-collection-vol-1.html" class="project-link">
+      <div class="project-inner">
+        <span class="project-title">Timely Collection — Vol 1.</span>
+        <span class="arrow">→</span>
+      </div>
+    </a>
 
     <a href="projects/here-come-the-blade-runners.html" class="project-link">
       <div class="project-inner">
@@ -229,16 +226,23 @@
       </div>
     </a>
 
-    <a href="projects/miscellaneous-artwork.html" class="project-link">
+    <a href="projects/paramore.html" class="project-link">
       <div class="project-inner">
-        <span class="project-title">Miscellaneous Artwork</span>
+        <span class="project-title">Paramore</span>
         <span class="arrow">→</span>
       </div>
     </a>
 
-    <a href="projects/miscellaneous-gifs.html" class="project-link">
+    <a href="projects/prints-of-peace.html" class="project-link">
       <div class="project-inner">
-        <span class="project-title">Miscellaneous GIFs</span>
+        <span class="project-title">PRINTS OF PEACE</span>
+        <span class="arrow">→</span>
+      </div>
+    </a>
+
+    <a href="projects/music.html" class="project-link">
+      <div class="project-inner">
+        <span class="project-title">Music</span>
         <span class="arrow">→</span>
       </div>
     </a>
@@ -246,8 +250,7 @@
   </div>
 
   <footer>
-    <span>Micah Bell — San Antonio, TX</span>
-    <a href="mailto:info@micahbellart.com">info@micahbellart.com</a>
+    <img src="images/MB-Footer.png" alt="Micah Bell" />
   </footer>
 
 </body>
