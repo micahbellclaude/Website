@@ -4,12 +4,9 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Real Emotion — Micah Bell</title>
+  <link rel="icon" type="image/png" href="../images/MB-Favicon.png" />
   <style>
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
 
     :root {
       --orange: #FF6B00;
@@ -23,15 +20,16 @@
       color: var(--black);
       font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
       font-weight: 700;
+      text-align: center;
     }
 
-    /* NAV */
     nav {
       width: 100%;
       display: flex;
       justify-content: space-between;
       align-items: center;
       padding: 2rem 2.5rem;
+      text-align: left;
     }
 
     .nav-back {
@@ -42,20 +40,10 @@
       text-decoration: none;
       color: var(--black);
       transition: color 0.15s;
-      display: flex;
-      align-items: center;
-      gap: 0.4rem;
     }
+    .nav-back:hover { color: var(--orange); }
 
-    .nav-back:hover {
-      color: var(--orange);
-    }
-
-    .nav-right {
-      display: flex;
-      gap: 2rem;
-    }
-
+    .nav-right { display: flex; gap: 2rem; align-items: center; }
     .nav-right a {
       font-size: 0.75rem;
       font-weight: 700;
@@ -65,68 +53,75 @@
       color: var(--black);
       transition: color 0.15s;
     }
+    .nav-right a:hover { color: var(--orange); }
 
-    .nav-right a:hover {
-      color: var(--orange);
-    }
-
-    /* PROJECT HEADER */
     .project-header {
-      max-width: 900px;
+      max-width: 700px;
       margin: 0 auto;
-      padding: 4rem 2.5rem 2.5rem;
-      border-bottom: 1.5px solid var(--gray);
+      padding: 3rem 2.5rem 3rem;
       animation: fadeUp 0.5s ease both;
     }
 
+    .project-identity { margin-bottom: 1.5rem; }
+
     .project-title {
-      font-size: clamp(2.5rem, 7vw, 5.5rem);
+      font-size: clamp(1.6rem, 4vw, 2.6rem);
       font-weight: 700;
-      letter-spacing: -0.03em;
-      line-height: 0.95;
-      margin-bottom: 1.5rem;
+      letter-spacing: -0.02em;
+      line-height: 1.05;
     }
 
-    .project-title span {
-      color: var(--orange);
+    /* Logo image swap — delete h1 above and uncomment:
+    <img src="../images/your-logo.png" class="project-logo" alt="Real Emotion" />
+    */
+    .project-logo {
+      max-width: 280px;
+      max-height: 120px;
+      width: auto;
+      height: auto;
+      object-fit: contain;
     }
 
-    .project-meta {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 0.5rem 2rem;
-      margin-bottom: 1.5rem;
-    }
-
-    .meta-tag {
-      font-size: 0.7rem;
-      letter-spacing: 0.2em;
-      text-transform: uppercase;
-      opacity: 0.4;
+    /* Optional project image shown below title */
+    .project-image {
+      margin: 0 auto 1.5rem;
+      max-height: 225px;
+      width: auto;
+      display: block;
+      /* Uncomment and set src in HTML to activate:
+         <img src="../images/your-image.jpg" class="project-image" alt="Real Emotion" />
+      */
     }
 
     .project-description {
-      font-size: clamp(0.95rem, 1.5vw, 1.1rem);
+      font-size: clamp(0.85rem, 1.5vw, 1rem);
       font-weight: 400;
-      line-height: 1.6;
-      max-width: 600px;
-      opacity: 0.7;
+      line-height: 1.65;
+      opacity: 0.65;
+      max-width: 520px;
+      margin: 0 auto;
     }
 
-    /* CONTENT AREA */
-    .project-content {
-      max-width: 900px;
+    .divider {
+      width: 100%;
+      max-width: 700px;
       margin: 0 auto;
-      padding: 4rem 2.5rem 8rem;
+      border: none;
+      border-top: 1.5px solid var(--gray);
+    }
+
+    .project-content {
+      max-width: 700px;
+      margin: 0 auto;
+      padding: 3.5rem 2.5rem 8rem;
       animation: fadeUp 0.5s ease 0.1s both;
     }
 
-    /* Content blocks — edit these */
     .content-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
-      gap: 1.5rem;
-      margin-bottom: 4rem;
+      grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+      gap: 1.25rem;
+      margin-bottom: 3rem;
     }
 
     .content-image {
@@ -136,88 +131,29 @@
       display: flex;
       align-items: center;
       justify-content: center;
-      font-size: 0.7rem;
+      font-size: 0.65rem;
       letter-spacing: 0.1em;
       text-transform: uppercase;
       opacity: 0.3;
-      /* Replace background with actual image: */
-      /* background: url('../images/blade-runners-01.jpg') center/cover; */
     }
 
     .content-image img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      display: block;
+      width: 100%; height: 100%; object-fit: cover; display: block;
     }
 
-    .content-text {
-      margin-bottom: 3rem;
-    }
-
-    .content-text h2 {
-      font-size: 1.4rem;
-      letter-spacing: -0.02em;
-      margin-bottom: 0.75rem;
-    }
-
-    .content-text p {
-      font-size: 0.95rem;
-      font-weight: 400;
-      line-height: 1.7;
-      opacity: 0.65;
-      max-width: 600px;
-    }
-
-    .content-link {
-      display: inline-flex;
-      align-items: center;
-      gap: 0.5rem;
-      font-size: 0.8rem;
-      letter-spacing: 0.15em;
-      text-transform: uppercase;
-      text-decoration: none;
-      color: var(--orange);
-      border-bottom: 1.5px solid var(--orange);
-      padding-bottom: 0.1rem;
-      margin-top: 1.5rem;
-      transition: opacity 0.15s;
-    }
-
-    .content-link:hover {
-      opacity: 0.6;
-    }
-
-    /* FOOTER */
     footer {
       width: 100%;
-      padding: 1.5rem 2.5rem;
+      padding: 1rem 2.5rem;
       display: flex;
-      justify-content: space-between;
+      justify-content: center;
       align-items: center;
       border-top: 1.5px solid var(--gray);
     }
 
-    footer span {
-      font-size: 0.7rem;
-      letter-spacing: 0.15em;
-      text-transform: uppercase;
-      opacity: 0.4;
-    }
-
-    footer a {
-      font-size: 0.7rem;
-      letter-spacing: 0.15em;
-      text-transform: uppercase;
-      text-decoration: none;
-      color: var(--black);
-      opacity: 0.4;
-      transition: opacity 0.15s, color 0.15s;
-    }
-
-    footer a:hover {
-      opacity: 1;
-      color: var(--orange);
+    footer img {
+      height: 28px;
+      width: auto;
+      opacity: 0.5;
     }
 
     @keyframes fadeUp {
@@ -232,23 +168,30 @@
     <a href="../index.html" class="nav-back">← All Work</a>
     <div class="nav-right">
       <a href="../info.html">Info</a>
-      <a href="https://instagram.com/micahbellart" target="_blank">Instagram</a>
+      <a href="https://instagram.com/micahbellart" target="_blank" aria-label="Instagram">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg>
+      </a>
     </div>
   </nav>
 
   <div class="project-header">
-    <h1 class="project-title">Real<br><span>Emotion</span></h1>
-    <div class="project-meta">
-      <span class="meta-tag">Painting</span>
-      <span class="meta-tag">Drawing</span>
-      <span class="meta-tag">Photography</span>
-      <span class="meta-tag">Design</span>
+    <div class="project-identity">
+      <h1 class="project-title">Real Emotion</h1>
+      <!-- Logo swap: delete h1 above, uncomment below:
+      <img src="../images/your-logo.png" class="project-logo" alt="Real Emotion" />
+      -->
     </div>
+
+    <!-- Project image (optional, 225px tall): uncomment to activate
+    <img src="../images/your-image.jpg" class="project-image" alt="Real Emotion" />
+    -->
+
     <p class="project-description">
       An art installation and album artwork for Paper Route's album "Real Emotion." A collaboration with JT Daly.
     </p>
-    <a href="#" class="content-link">View Project →</a>
   </div>
+
+  <hr class="divider" />
 
   <!-- ============================================================
        CONTENT SECTION — Add your images, text, embeds below here
@@ -256,20 +199,16 @@
   <div class="project-content">
 
     <div class="content-grid">
-      <!-- Replace these placeholder divs with <img> tags or embed your work -->
       <div class="content-image">Image</div>
       <div class="content-image">Image</div>
       <div class="content-image">Image</div>
       <div class="content-image">Image</div>
     </div>
 
-    <!-- Add more text blocks, video embeds, etc. as needed -->
-
   </div>
 
   <footer>
-    <span>Micah Bell — San Antonio, TX</span>
-    <a href="mailto:info@micahbellart.com">info@micahbellart.com</a>
+    <img src="../images/MB-Footer.png" alt="Micah Bell" />
   </footer>
 
 </body>
