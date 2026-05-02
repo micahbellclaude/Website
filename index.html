@@ -4,6 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Micah Bell</title>
+  <link rel="icon" type="image/png" href="images/MB-Favicon.png" />
   <style>
     * {
       margin: 0;
@@ -66,16 +67,11 @@
       animation: fadeUp 0.6s ease both;
     }
 
-    .logo {
-      font-size: clamp(5rem, 14vw, 10rem);
-      line-height: 1;
-      letter-spacing: -0.03em;
-      color: var(--black);
-      margin-bottom: 0.1em;
-    }
-
-    .logo span {
-      color: var(--orange);
+    .logo img {
+      width: clamp(120px, 20vw, 220px);
+      height: auto;
+      display: block;
+      margin-bottom: 0.25rem;
     }
 
     .tagline {
@@ -206,7 +202,7 @@
   </nav>
 
   <div class="hero">
-    <div class="logo">?<span>M</span></div>
+    <div class="logo"><img src="images/MB-Logo.png" alt="Micah Bell" /></div>
     <div class="tagline">Thank you for your attention.</div>
   </div>
 
