@@ -248,7 +248,12 @@
   </div>
 
   <script>
+    if (localStorage.getItem('isHuman')) {
+      document.getElementById('human-gate').remove();
+    }
+
     function enterSite() {
+      localStorage.setItem('isHuman', '1');
       const gate = document.getElementById('human-gate');
       gate.classList.add('fade-out');
       setTimeout(() => gate.remove(), 400);
