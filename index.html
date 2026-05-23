@@ -174,9 +174,86 @@
       width: auto;
       opacity: 0.5;
     }
+    /* HUMAN GATE */
+    #human-gate {
+      position: fixed;
+      inset: 0;
+      background: var(--white);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 2.5rem;
+      z-index: 1000;
+    }
+
+    #human-gate h2 {
+      font-size: clamp(1.6rem, 5vw, 3rem);
+      font-weight: 700;
+      letter-spacing: -0.02em;
+    }
+
+    .gate-buttons {
+      display: flex;
+      gap: 1.5rem;
+    }
+
+    .gate-btn {
+      font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+      font-size: 0.75rem;
+      font-weight: 700;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      border: 2px solid var(--black);
+      background: none;
+      color: var(--black);
+      padding: 0.75rem 2rem;
+      cursor: pointer;
+      transition: background 0.15s, color 0.15s;
+    }
+
+    .gate-btn:hover {
+      background: var(--black);
+      color: var(--white);
+    }
+
+    .gate-btn.yes:hover {
+      background: var(--black);
+      color: var(--white);
+    }
+
+    .gate-btn.no:hover {
+      background: var(--orange);
+      border-color: var(--orange);
+      color: var(--white);
+    }
+
+    #human-gate.fade-out {
+      animation: gateOut 0.4s ease forwards;
+    }
+
+    @keyframes gateOut {
+      to { opacity: 0; pointer-events: none; }
+    }
   </style>
 </head>
 <body>
+
+  <div id="human-gate">
+    <h2>Are you human?</h2>
+    <div class="gate-buttons">
+      <button class="gate-btn yes" onclick="enterSite()">Yes</button>
+      <button class="gate-btn no" onclick="window.location.href='https://dune.fandom.com/wiki/Butlerian_Jihad'">No</button>
+    </div>
+  </div>
+
+  <script>
+    function enterSite() {
+      const gate = document.getElementById('human-gate');
+      gate.classList.add('fade-out');
+      setTimeout(() => gate.remove(), 400);
+    }
+  </script>
 
   <nav>
     <a href="info.html">Info</a>
